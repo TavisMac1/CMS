@@ -23,7 +23,8 @@ class CategoryController extends Controller
     public function index()
     {   
         $categories = Category::orderBy('name','ASC')->paginate(10);
-        return view('categories.index')->with('categories',$categories);
+        $item = Item::all();
+        return view('categories.index')->with('categories',$categories)->with('item',$item);
     }
 
     /**
@@ -124,7 +125,7 @@ class CategoryController extends Controller
         foreach ($item as $it) {
         //    Session::flash('success',$it->category_id);
             if ($it->category_id == $cat->id) {
-                Session::flash('success','THE CAT NOT DELETED');
+                Session::flash('success','Category in use by item');
             } else {
                 $cat->delete();
                 Session::flash('success','The category has been deleted');

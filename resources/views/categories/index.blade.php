@@ -39,10 +39,21 @@ Laravel Project
 							<td>{{ $category->name }}</td>
 							<td style='width:100px;'>{{ date('M j, Y', strtotime($category->created_at)) }}</td>
 							<td style='width:100px;'>{{ date('M j, Y', strtotime($category->updated_at)) }}</td>
-							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('categories.edit', $category->id) }}" class="btn btn-success btn-sm">Edit</a></div><div style='float:left;'>
-								{!! Form::open(['route' => ['categories.destroy', $category->id], 'method'=>'DELETE']) !!}
-							    	{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'', 'onclick'=>'return confirm("Are you sure?")']) }}
-								{!! Form::close() !!}</div>
+							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('categories.edit', $category->id) }}" class="btn btn-success btn-sm">Edit</a></div>
+								@foreach ($item as $it)
+									@if ($it->category_id == $category->id)
+										{{$show = false;}}
+										@else
+										{{$show = true;}}									
+									@endif
+								@endforeach
+								@if ($show == true)
+									<div style='float:left;'>
+										{!! Form::open(['route' => ['categories.destroy', $category->id], 'method'=>'DELETE']) !!}
+											{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'', 'onclick'=>'return confirm("Are you sure?")']) }}
+										{!! Form::close() !!}
+									</div>
+								@endif
 							</td>
 						</tr>
 					@endforeach
