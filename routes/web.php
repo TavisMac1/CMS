@@ -12,9 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('items', '\App\Http\Controllers\ItemController');
-Route::resource('categories', '\App\Http\Controllers\CategoryController');
+//secure routes with auth
+Route::resource('items', '\App\Http\Controllers\ItemController')->middleware('auth');
+Route::resource('categories', '\App\Http\Controllers\CategoryController')->middleware('auth');
+Route::resource('products', '\App\Http\Controllers\ProductsController')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {   //secure the controller (everything function) by auth
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
