@@ -21,7 +21,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $categories = Category::orderBy('name','ASC')->paginate(10);
         return view('categories.index')->with('categories',$categories);
     }
@@ -77,7 +77,7 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
+    {   
         $category = Category::find($id);
         return view('categories.edit')->with('category',$category);
     }
@@ -119,21 +119,20 @@ class CategoryController extends Controller
         //delete the category by ID
         //Category => reference the model, which is DB reference for category | id is returned by view
         $cat = Category::find($id);
-      //  $item = Item::find($id);
-
-        /*
+        $item = Item::all();
+        
         foreach ($item as $it) {
-            Session::flash('success',$it->category_id);
-            if ($it->category_id == $cat->category_id) {
+        //    Session::flash('success',$it->category_id);
+            if ($it->category_id == $cat->id) {
                 Session::flash('success','THE CAT NOT DELETED');
             } else {
                 $cat->delete();
                 Session::flash('success','The category has been deleted');
             }
-        } */
-
+        } 
+        /*
         $cat->delete();
-        Session::flash('success','The category has been deleted');
+        Session::flash('success','The category has been deleted'); */
 
         return redirect()->route('categories.index');
     }
