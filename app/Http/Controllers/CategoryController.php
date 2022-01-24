@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Item;
 use Session;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -108,7 +110,26 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-        //
+    {   
+        //delete the category by ID
+        //Category => reference the model, which is DB reference for category | id is returned by view
+        $cat = Category::find($id);
+      //  $item = Item::find($id);
+
+        /*
+        foreach ($item as $it) {
+            Session::flash('success',$it->category_id);
+            if ($it->category_id == $cat->category_id) {
+                Session::flash('success','THE CAT NOT DELETED');
+            } else {
+                $cat->delete();
+                Session::flash('success','The category has been deleted');
+            }
+        } */
+
+        $cat->delete();
+        Session::flash('success','The category has been deleted');
+
+        return redirect()->route('categories.index');
     }
 }
