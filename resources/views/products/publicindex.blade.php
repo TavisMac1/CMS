@@ -12,7 +12,7 @@ Laravel Project
 	
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<h1>Our Product Categories</h1>
+			<h1>Our Products</h1>
 		</div>
 		<div class="col-md-12">
 			<hr />
@@ -26,12 +26,12 @@ Laravel Project
 					<th>Name</th>
 				</thead>
 				<tbody>
-					@foreach ($categories as $category)
-						<tr>
-							<td>{{ $category->name }}</td>
-							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('products.show', $category->id) }}" class="btn btn-success btn-sm">View</a></div><div style='float:left;'>
-							</td>
-						</tr>
+					@foreach ($items as $item)
+							<tr>
+								<td><img src="{{asset('storage/job'.$item->picture)}}" alt='image non avail'> </td>
+								<td>{{ $item->title }}</td>
+								<td>${{ $item->price }}</td>
+							</tr>
 					@endforeach
 				</tbody>
 			</table>

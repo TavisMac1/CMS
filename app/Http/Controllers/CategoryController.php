@@ -123,7 +123,6 @@ class CategoryController extends Controller
         $item = Item::all();
         
         foreach ($item as $it) {
-        //    Session::flash('success',$it->category_id);
             if ($it->category_id == $cat->id) {
                 Session::flash('success','Category in use by item');
             } else {
