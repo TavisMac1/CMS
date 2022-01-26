@@ -55,7 +55,7 @@ Laravel Project
 											  'data-parsley-required'=>'']) }}
 
 				@if ($item->picture != "")
-				    <p style='margin-top:20px'>Current Image:<br><img src="{{ Storage::url('images/items/'.$item->picture) }}" style='height:100px;' ></p>
+				    <p style='margin-top:20px'>Current Image:<br><img src="{{ Storage::url('public/images/items/'.$item->picture) }}" style='height:100px;' ></p>
 			    @endif
 
 				{{ Form::label('picture', 'Picture:', ['style'=>'margin-top:20px']) }}

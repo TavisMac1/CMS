@@ -68,12 +68,25 @@ class ItemController extends Controller
         //save image
         if ($request->hasFile('picture')) {
             $image = $request->file('picture');
-
-            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $time = time();
+            $filename = $time . '.' . $image->getClientOriginalExtension();
             $location ='images/items/' . $filename;
 
             $image = Image::make($image);
             Storage::disk('public')->put($location, (string) $image->encode());
+
+            //resize image for local use
+            $image = $request->file('picture');
+            $filenameTN = 'tn_' . $time . '.' . $image->getClientOriginalExtension();
+            $location2 ='images/items/' . $filenameTN;
+            $img = Image::make($image)->resize(50, 50);
+            Storage::disk('public')->put($location2, (string) $img->encode());
+;
+            $filenameTN = 'lrg_' . $time . '.' . $image->getClientOriginalExtension();
+            $location2 ='images/items/' . $filenameTN;
+            $img = Image::make($image)->resize(300, 300);
+            Storage::disk('public')->put($location2, (string) $img->encode());
+
             $item->picture = $filename;
         }
 

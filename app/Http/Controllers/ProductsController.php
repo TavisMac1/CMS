@@ -32,4 +32,10 @@ class ProductsController extends Controller
         $items = Item::orderBy('title','ASC')->paginate(10)->where('category_id','==', $id);
         return view('products.publicindex')->with('categories',$categories)->with('items', $items);
     }
+
+    public function display($id)
+    {
+        $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $id);
+        return view('products.publicDetails')->with('items', $items);
+    }
 }

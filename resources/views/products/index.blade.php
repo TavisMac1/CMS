@@ -1,3 +1,7 @@
+<?php
+session_start();
+$getIP = $_SERVER['REMOTE_ADDR'];
+?>
 @extends('common') 
 
 @section('pagetitle')

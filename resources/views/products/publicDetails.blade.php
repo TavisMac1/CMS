@@ -16,7 +16,7 @@ Laravel Project
 	
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			<h1>Our Products</h1>
+			<h1> Title </h1>
 		</div>
 		<div class="col-md-12">
 			<hr />
@@ -33,16 +33,17 @@ Laravel Project
 					@foreach ($items as $item)
 							<tr>
 								<td>{{ $item->title }}</td>
-								<td><img src="{{ Storage::url('public/images/items/tn_'. $item->picture) }}" ></td>
+								<td><img src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" ></td>
 								<td>${{ $item->price }}</td>
-								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('details.show', $item->id) }}" class="btn btn-primary btn-sm">Buy Now</a></div><div style='float:left;'>
+								<td>{{ $item->description }}</td>
+								<td>{{ $item->quantity }}</td>
+								<td>{{ $item->id }}</td>
+								<td>{{ $item->sku }}</td>
+								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary btn-sm">Add to cart</a></div><div style='float:left;'>
 							</tr>
 					@endforeach
 				</tbody>
 			</table>
-			<div class="text-center">
-				{!! $categories->links(); !!}
-			</div>
 		</div>
 	</div>
 
