@@ -17,7 +17,7 @@ Route::resource('items', '\App\Http\Controllers\ItemController')->middleware('au
 Route::resource('categories', '\App\Http\Controllers\CategoryController')->middleware('auth');
 Route::resource('products', '\App\Http\Controllers\ProductsController')->middleware('auth');
 Route::resource('details', '\App\Http\Controllers\DetailsController')->middleware('auth');
-Route::resource('cart', '\App\Http\Controllers\CartController')->middleware('auth');
+Route::resource('shopping', '\App\Http\Controllers\CartController')->middleware('auth');
 
 Route::get('/', function () {
     return view('welcome');

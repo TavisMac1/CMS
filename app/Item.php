@@ -18,7 +18,8 @@ class Item extends Model
         return $this->hasOne('\App\Category','id', 'category_id')->orderBy('name','ASC');
     }
 
-    public function shopping_cart() {
-        return $this->hasOne('\App\Cart','id', 'item_id')->orderBy('name','ASC');
-    }
+    /*
+    public function cart() {
+        return $this->hasOne('\App\Cart','id', 'item_id');
+    } */
 }

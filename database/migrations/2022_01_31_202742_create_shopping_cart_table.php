@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCartTable extends Migration
+class CreateShoppingCartTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,7 +17,7 @@ class CreateCartTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('item_id');
             $table->integer('quantity');
-            $table->integer('session_id');
+            $table->string('session_id');
             $table->string('ip_address');
         });
     }

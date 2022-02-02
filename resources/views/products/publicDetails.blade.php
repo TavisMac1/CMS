@@ -29,6 +29,10 @@ Laravel Project
 			<table class="table">
 				<thead>
 					<th>Name</th>
+					<div> 
+						{{$getIP}}
+						{{$sess}}
+					</div>
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
@@ -40,7 +44,16 @@ Laravel Project
 								<td>{{ $item->quantity }}</td>
 								<td>{{ $item->id }}</td>
 								<td>{{ $item->sku }}</td>
-								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('cart.store', $item->id,$sess,$getIP) }}" class="btn btn-primary btn-sm">Add to cart</a></div><div style='float:left;'>
+								<td style="width: 200px;"><div style='float:left; margin-right:5px;'>
+									<form action="{{route('shopping.store')}}" method="post"> 
+										@csrf
+										<input type="hidden" name="id" value="{{$item->id}}"/>
+										<input type="hidden" name="sess" value="{{$sess}}"/>
+										<input type="hidden" name="ip" value="{{$getIP}}"/>
+										<input type="submit" class="btn btn-primary btn-sm" value="Buy"/>
+									</form>
+								</div>
+								<div style='float:left;'>
 							</tr>
 					@endforeach
 				</tbody>
