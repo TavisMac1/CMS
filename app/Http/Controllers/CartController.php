@@ -58,8 +58,8 @@ class CartController extends Controller
             }
         }
 
-        $cart = Cart::where('session_id','==', $request->sess);
         if ($empty == true) { //session matches proceed to cart viewing
+            $cart = Cart::all()->where('session_id','==', $request->sess);
             $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $request->id);
             return view('cart.cart')->with('items', $items)->with('cart', $cart);
         }
@@ -83,7 +83,7 @@ class CartController extends Controller
         $quantity->quantity = $request->input('quantity');
         $quantity->save();
 
-        $cart = Cart::where('session_id','==', $request->sess);
+        $cart = Cart::all()->where('session_id','==', $request->sess);
         $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $request->id);
         return view('cart.cart')->with(Session::flash('success','quantity updated'))->with('items', $items)->with('cart', $cart);
     }

@@ -33,13 +33,12 @@ Laravel Project
 				<hr/>
 				<tbody>
 					@foreach ($items as $item)
-					{{$item->id}}
 							<tr>
 								<td>{{ $item->title }}</td>
 								
 								{!! Form::open(['route' => ['shopping.update', $item->id], 'method'=>'PUT']) !!}
 									{{Form::label('quantity', 'Quantity')}}
-									<input type="number" name="quantity" id="input" class="form-control" value='{{$cart->quantity}}' min="{1"} max="{11"} step="" required="required" title="">
+									<input type="number" name="quantity" id="input" class="form-control" value='{{$cart[0]->quantity}}' min="{1"} max="{11"} step="" required="required" title="">
 									<input type="hidden" name="sess" value="{{$sess}}"/>
 									<input type="hidden" name="id" value="{{$item->id}}"/>
 									{{!! Form::submit('Update Quantity', ['class' => 'btn btn-primary']) !!}}
@@ -52,12 +51,12 @@ Laravel Project
 								<td>{{ $item->quantity }}</td>
 								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary btn-sm">Add to cart</a></div><div style='float:left;'>
 							</tr>
+							<div> 
+								<span> 
+									Price: ${{$item->price * $cart[0]->quantity}}
+								</span>
+							</div>
 					@endforeach
-					<div> 
-						<span> 
-							Price: ${{$items->price * $cart->quantity}}
-						</span>
-					</div>
 				</tbody>
 			</table>
 		</div>
