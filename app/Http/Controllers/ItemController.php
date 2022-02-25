@@ -81,7 +81,7 @@ class ItemController extends Controller
             $location2 ='images/items/' . $filenameTN;
             $img = Image::make($image)->resize(50, 50);
             Storage::disk('public')->put($location2, (string) $img->encode());
-;
+
             $filenameTN = 'lrg_' . $time . '.' . $image->getClientOriginalExtension();
             $location2 ='images/items/' . $filenameTN;
             $img = Image::make($image)->resize(300, 300);

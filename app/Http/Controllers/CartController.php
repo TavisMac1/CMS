@@ -8,13 +8,7 @@ use Illuminate\Http\Request;
 use Session;
 
 class CartController extends Controller
-{  
-     public function __construct()
-    {   //secure the controller (everything function) by auth
-        $this->middleware('auth');
-    }
-
-    public function index() {
+{   public function index() {
         echo('on cart index');
         /*()
         dump($id, $ip, $sess);
@@ -60,7 +54,7 @@ class CartController extends Controller
 
         if ($empty == true) { //session matches proceed to cart viewing
             $cart = Cart::all()->where('session_id','==', $request->sess);
-            $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $request->id);
+            $items = Item::orderBy('title','ASC')->paginate(1)->where('id','==', $request->id);
             return view('cart.cart')->with('items', $items)->with('cart', $cart);
         }
     }

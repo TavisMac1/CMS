@@ -38,27 +38,58 @@ Laravel Project
 								
 								{!! Form::open(['route' => ['shopping.update', $item->id], 'method'=>'PUT']) !!}
 									{{Form::label('quantity', 'Quantity')}}
-									<input type="number" name="quantity" id="input" class="form-control" value='{{$cart[0]->quantity}}' min="{1"} max="{11"} step="" required="required" title="">
+									<input type="number" name="quantity" id="input" class="form-control" value='1' min="{1"} max="{11"} step="" required="required" title="">
 									<input type="hidden" name="sess" value="{{$sess}}"/>
 									<input type="hidden" name="id" value="{{$item->id}}"/>
-									{{!! Form::submit('Update Quantity', ['class' => 'btn btn-primary']) !!}}
+									{!! Form::submit('Update Quantity', ['class' => 'btn btn-primary', 'style'=>'width: 200px;']) !!}
 								{!!Form::close() !!}
 								{!! Form::open(['route' => ['shopping.destroy', $item->id], 'method'=>'DELETE']) !!}
-									{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'', 'onclick'=>'return confirm("Are you sure?")']) }}
+									{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'width: 200px;', 'onclick'=>'return confirm("Are you sure?")']) }}
 								{!!Form::close() !!}
 
 								<td>${{ $item->price }}</td>
 								<td>{{ $item->quantity }}</td>
-								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('items.edit', $item->id) }}" class="btn btn-primary btn-sm">Add to cart</a></div><div style='float:left;'>
 							</tr>
 							<div> 
 								<span> 
-									Price: ${{$item->price * $cart[0]->quantity}}
+									Price: ${{$item->price * 1}}
 								</span>
 							</div>
 					@endforeach
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>Customer Details</h1>
+			<hr/>
+
+			{!! Form::open(['route' => 'order.store', 'data-parsley-validate' => '', 
+			                'files' =>false]) !!}
+			    
+				{{ Form::label('fname', 'First Name:') }}
+			    {{ Form::text('fname', null, ['class'=>'form-control', 'style'=>'', 
+			                                  'data-parsley-required'=>'', 
+											  'data-parsley-maxlength'=>'255']) }}
+
+			    {{ Form::label('lname', 'Last Name:', ['style'=>'margin-top:20px']) }}
+			    {{ Form::text('lname', null, ['class'=>'form-control', 
+				                                 'data-parsley-required'=>'']) }}
+
+				{{ Form::label('pnum', 'Phone Number:', ['style'=>'margin-top:20px']) }}
+				{{ Form::text('pnum', null, ['class'=>'form-control', 
+												'data-parsley-required'=>'']) }}	
+
+				{{ Form::label('email', 'Email:', ['style'=>'margin-top:20px']) }}
+				{{ Form::text('email', null, ['class'=>'form-control', 
+												'data-parsley-required'=>'']) }}
+				<input type="hidden" name="sess" value="{{$sess}}"/>
+
+			    {{ Form::submit('Place Order', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top:20px']) }}
+
+			{!! Form::close() !!}
+
 		</div>
 	</div>
 

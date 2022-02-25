@@ -29,10 +29,6 @@ Laravel Project
 			<table class="table">
 				<thead>
 					<th>Name</th>
-					<div> 
-						{{$getIP}}
-						{{$sess}}
-					</div>
 				</thead>
 				<tbody>
 					@foreach ($items as $item)
@@ -60,5 +56,4 @@ Laravel Project
 			</table>
 		</div>
 	</div>
-
 @endsection
