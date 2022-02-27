@@ -3,16 +3,17 @@
 }
 
 .navbar-default {
-	background-color: #ed2300;
-	border-color: #ed2300;
+	background-color: #383838;
+	border-color: #272727;
 }
 
 .navbar-default .navbar-nav > li > a {
-	color: #FFF;
+	color: rgb(214, 214, 214);
 }
 
 .navbar-brand {
-	color: #FFF !important;
+	color: rgb(221, 61, 61) !important;
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 ul.navbar-nav li.active {
@@ -21,7 +22,7 @@ ul.navbar-nav li.active {
 }
 
 .navbar-default .navbar-nav > li.active > a {
-	color: #000;
+	color: rgb(212, 212, 212);
 	background-color: #FFF !important;
 	border-color: #FFF !important;
 }
@@ -39,7 +40,7 @@ ul.navbar-nav li.active {
 }
 @media (min-width: 768px){
 	#main {
-	    background-color: #FFF;
+	    background-color: rgb(246, 246, 246);
 	    padding: 0;
 	    margin: 0;
 	    overflow: hidden;

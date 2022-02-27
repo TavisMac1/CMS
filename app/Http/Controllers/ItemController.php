@@ -79,12 +79,12 @@ class ItemController extends Controller
             $image = $request->file('picture');
             $filenameTN = 'tn_' . $time . '.' . $image->getClientOriginalExtension();
             $location2 ='images/items/' . $filenameTN;
-            $img = Image::make($image)->resize(50, 50);
+            $img = Image::make($image)->resize(150, 100);
             Storage::disk('public')->put($location2, (string) $img->encode());
 
             $filenameTN = 'lrg_' . $time . '.' . $image->getClientOriginalExtension();
             $location2 ='images/items/' . $filenameTN;
-            $img = Image::make($image)->resize(300, 300);
+            $img = Image::make($image)->resize(350, 300);
             Storage::disk('public')->put($location2, (string) $img->encode());
 
             $item->picture = $filename;

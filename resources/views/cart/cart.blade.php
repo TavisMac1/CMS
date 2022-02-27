@@ -6,11 +6,11 @@ $getIP = $_SERVER['REMOTE_ADDR'];
 @extends('common') 
 
 @section('pagetitle')
-Item List
+Shopping Cart
 @endsection
 
 @section('pagename')
-Laravel Project
+Tavis Store
 @endsection
 
 @section('content')
@@ -38,7 +38,7 @@ Laravel Project
 								
 								{!! Form::open(['route' => ['shopping.update', $item->id], 'method'=>'PUT']) !!}
 									{{Form::label('quantity', 'Quantity')}}
-									<input type="number" name="quantity" id="input" class="form-control" value='1' min="{1"} max="{11"} step="" required="required" title="">
+									<input type="number" name="quantity" id="input" class="form-control" value='{{$cart[0]->quantity}}' min="{1"} max="{11"} step="" required="required" title="">
 									<input type="hidden" name="sess" value="{{$sess}}"/>
 									<input type="hidden" name="id" value="{{$item->id}}"/>
 									{!! Form::submit('Update Quantity', ['class' => 'btn btn-primary', 'style'=>'width: 200px;']) !!}
@@ -52,7 +52,7 @@ Laravel Project
 							</tr>
 							<div> 
 								<span> 
-									Price: ${{$item->price * 1}}
+									Price: ${{$item->price * $cart[0]->quantity}}
 								</span>
 							</div>
 					@endforeach
@@ -85,6 +85,9 @@ Laravel Project
 				{{ Form::text('email', null, ['class'=>'form-control', 
 												'data-parsley-required'=>'']) }}
 				<input type="hidden" name="sess" value="{{$sess}}"/>
+				<input type="hidden" name="price" value="{{$item->price * 1}}"/>
+				<input type="hidden" name="quantity" value="{{$item->quantity}}"/>
+				<input type="hidden" name="id" value="{{$item->id}}"/>
 
 			    {{ Form::submit('Place Order', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top:20px']) }}
 

@@ -14,8 +14,9 @@ class CreateItemsSold extends Migration
     public function up()
     {
         Schema::create('items_sold', function (Blueprint $table) {
-            $table->bigInteger('item_id');
-            $table->bigInteger('order_id');
+            $table->id();
+            $table->integer('item_id');
+            $table->integer('order_id');
             $table->double('item_price', 10, 2);
             $table->integer('quantity');
         });

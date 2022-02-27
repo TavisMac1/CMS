@@ -34,7 +34,7 @@ Laravel Project
 					@foreach ($items as $item)
 							<tr>
 								<td>{{ $item->title }}</td>
-								<td><img src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" ></td>
+								<td><img style="width:350px;height:300px;"src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" ></td>
 								<td>${{ $item->price }}</td>
 								<td>{{ $item->description }}</td>
 								<td>{{ $item->quantity }}</td>

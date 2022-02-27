@@ -26,6 +26,9 @@ Route::resource('order', '\App\Http\Controllers\OrderController');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/thankyou', function () {
+    return view('thankyou');
+});
 
 Auth::routes();
 
