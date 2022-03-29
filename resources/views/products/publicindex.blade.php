@@ -14,29 +14,27 @@ Laravel Project
 
 @section('content')
 	
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<h1>Our Products</h1>
-		</div>
-		<div class="col-md-12">
-			<hr />
-		</div>
+	<div class="jumbotron">
+		<h1 class="display-4">Our products!</h1>
+		<p class="lead">Add a product to your cart when ready</p>
+		<hr class="my-4">
 	</div>
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<table class="table">
-				<thead>
-					<th>Name</th>
-				</thead>
 				<tbody>
 					@foreach ($items as $item)
-							<tr>
-								<td>{{ $item->title }}</td>
-								<td><img style="width:150px;height:100px;" src="{{ Storage::url('public/images/items/tn_'. $item->picture) }}" ></td>
-								<td>${{ $item->price }}</td>
-								<td style="width: 175px;"><div style='float:left; margin-right:5px;'><a href="{{ route('details.show', $item->id) }}" class="btn btn-primary btn-sm">Buy Now</a></div><div style='float:left;'>
-							</tr>
+						<div class="card bg-secondary border" style="width: 15rem;">
+							<img class="card-img-top img-thumbnail" style="width:150px;height:100px;" src="{{ Storage::url('public/images/items/tn_'. $item->picture) }}" alt="Card image cap">
+							<div class="card-body">
+								<h5 class="card-title">{{ $item->title }}</h5>
+								 <ul class="list-group list-group-flush">
+									<li class="list-group-item text-primary">${{ $item->price }}</li>
+  								</ul>
+								<a href="{{ route('details.show', $item->id) }}" class="btn btn-primary">Add to cart</a>
+							</div>
+						</div>
 					@endforeach
 				</tbody>
 			</table>

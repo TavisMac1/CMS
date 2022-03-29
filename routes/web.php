@@ -16,6 +16,7 @@ use App\Http\Controllers\CartController;
 //secure routes with auth
 Route::resource('items', '\App\Http\Controllers\ItemController')->middleware('auth');
 Route::resource('categories', '\App\Http\Controllers\CategoryController')->middleware('auth');
+Route::resource('allorders', '\App\Http\Controllers\AllOrdersController')->middleware('auth');
 Route::resource('products', '\App\Http\Controllers\ProductsController');
 Route::resource('details', '\App\Http\Controllers\DetailsController');
 

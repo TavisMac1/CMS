@@ -15,45 +15,31 @@ Laravel Project
 
 @section('content')
 	
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<h1> Title </h1>
+	
+	<h1 style="color: rgb(58, 58, 58)"> Your Cart </h1>
+	<hr />
+	<div class="d-flex justify-content-center">
+		@foreach ($items as $item)
+			<div class="card text-center bg-primary" style="width: 30rem;">
+				<img class="card-img-top img-thumbnail" style="width:350px;height:300px;" src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title text-secondary">{{ $item->title }}</h5>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item text-primary">PRICE: {{ $item->price }}</li>
+						<li class="list-group-item text-primary">QUANTITY: {{$item->quantity}}</li>
+						<li class="list-group-item text-primary">ID: {{$item->id}}</li>
+						<li class="list-group-item text-primary">SKU: {{$item->sku}}</li>
+					</ul>
+					<p class="card-text">{{$item->description}}</p>
+					<form action="{{route('shopping.store')}}" method="post"> 
+						@csrf
+						<input type="hidden" name="id" value="{{$item->id}}"/>
+						<input type="hidden" name="sess" value="{{$sess}}"/>
+						<input type="hidden" name="ip" value="{{$getIP}}"/>
+						<input type="submit" class="btn btn-success btn-md" value="Buy"/>
+					</form>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-12">
-			<hr />
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<table class="table">
-				<thead>
-					<th>Name</th>
-				</thead>
-				<tbody>
-					@foreach ($items as $item)
-							<tr>
-								<td>{{ $item->title }}</td>
-								<td><img style="width:350px;height:300px;"src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" ></td>
-								<td>${{ $item->price }}</td>
-								<td>{{ $item->description }}</td>
-								<td>{{ $item->quantity }}</td>
-								<td>{{ $item->id }}</td>
-								<td>{{ $item->sku }}</td>
-								<td style="width: 200px;"><div style='float:left; margin-right:5px;'>
-									<form action="{{route('shopping.store')}}" method="post"> 
-										@csrf
-										<input type="hidden" name="id" value="{{$item->id}}"/>
-										<input type="hidden" name="sess" value="{{$sess}}"/>
-										<input type="hidden" name="ip" value="{{$getIP}}"/>
-										<input type="submit" class="btn btn-primary btn-sm" value="Buy"/>
-									</form>
-								</div>
-								<div style='float:left;'>
-							</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-	</div>
+		@endforeach
 @endsection

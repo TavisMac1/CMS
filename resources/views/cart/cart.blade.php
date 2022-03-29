@@ -20,7 +20,6 @@ Tavis Store
 			<h1> Your shopping cart</h1>
 		</div>
 		<div class="col-md-12">
-			<hr />
 		</div>
 	</div>
 
@@ -36,15 +35,15 @@ Tavis Store
 							<tr>
 								<td>{{ $item->title }}</td>
 								
-								{!! Form::open(['route' => ['shopping.update', $item->id], 'method'=>'PUT']) !!}
+								{!! Form::open(['route' => ['shopping.update', $cart->id], 'method'=>'PUT']) !!}
 									{{Form::label('quantity', 'Quantity')}}
-									<input type="number" name="quantity" id="input" class="form-control" value='{{$cart[0]->quantity}}' min="{1"} max="{11"} step="" required="required" title="">
+									<input type="number" name="quantity" id="input" class="form-control" value="" min="{1"} max="{11"} step="" required="required" title="">
 									<input type="hidden" name="sess" value="{{$sess}}"/>
 									<input type="hidden" name="id" value="{{$item->id}}"/>
 									{!! Form::submit('Update Quantity', ['class' => 'btn btn-primary', 'style'=>'width: 200px;']) !!}
 								{!!Form::close() !!}
-								{!! Form::open(['route' => ['shopping.destroy', $item->id], 'method'=>'DELETE']) !!}
-									{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'width: 200px;', 'onclick'=>'return confirm("Are you sure?")']) }}
+								{!! Form::open(['route' => ['shopping.destroy', $cart->id], 'method'=>'DELETE']) !!}
+									{{ Form::submit('Delete', ['class'=>'btn btn-sm btn-danger btn-block', 'style'=>'width: 200px; float: right', 'onclick'=>'return confirm("Are you sure?")']) }}
 								{!!Form::close() !!}
 
 								<td>${{ $item->price }}</td>
@@ -52,7 +51,7 @@ Tavis Store
 							</tr>
 							<div> 
 								<span> 
-									Price: ${{$item->price * $cart[0]->quantity}}
+									Price: ${{$item->price * $cart->quantity}}
 								</span>
 							</div>
 					@endforeach
@@ -89,7 +88,7 @@ Tavis Store
 				<input type="hidden" name="quantity" value="{{$item->quantity}}"/>
 				<input type="hidden" name="id" value="{{$item->id}}"/>
 
-			    {{ Form::submit('Place Order', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top:20px']) }}
+			    {{ Form::submit('Place Order', ['class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px']) }}
 
 			{!! Form::close() !!}
 

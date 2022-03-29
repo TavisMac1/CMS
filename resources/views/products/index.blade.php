@@ -19,7 +19,7 @@ Tavis Store Front
 			<h1>Our Product Categories</h1>
 		</div>
 		<div class="col-md-12">
-			<hr />
+			
 		</div>
 	</div>
 
@@ -32,8 +32,8 @@ Tavis Store Front
 				<tbody>
 					@foreach ($categories as $category)
 						<tr>
-							<td>{{ $category->name }}</td>
-							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('products.show', $category->id) }}" class="btn btn-success btn-sm">View</a></div><div style='float:left;'>
+							<td class="text-info">{{ $category->name }}</td>
+							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('products.show', $category->id) }}" class="btn btn-primary btn-sm">View</a></div><div style='float:left;'>
 							</td>
 						</tr>
 					@endforeach

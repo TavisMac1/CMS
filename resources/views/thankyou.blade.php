@@ -1,5 +1,10 @@
+<?php
+session_start();
+if(!session_id()) {
+    return redirect('/products');
+ }
+?>
 @extends('common')
-
 @section('content')
 @section('pagetitle')
 Orders
@@ -37,4 +42,7 @@ Tavis Store
         </div>
     </div>
 </div>
+<?php
+session_destroy();
+?>
 @endsection
