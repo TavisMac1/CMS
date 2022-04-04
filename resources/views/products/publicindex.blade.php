@@ -25,7 +25,7 @@ Laravel Project
 			<table class="table">
 				<tbody>
 					@foreach ($items as $item)
-						<div class="card bg-secondary border" style="width: 15rem;">
+						<div class="card bg-secondary border" style="width: 15rem; float: left; margin-right: 5px;">
 							<img class="card-img-top img-thumbnail" style="width:150px;height:100px;" src="{{ Storage::url('public/images/items/tn_'. $item->picture) }}" alt="Card image cap">
 							<div class="card-body">
 								<h5 class="card-title">{{ $item->title }}</h5>

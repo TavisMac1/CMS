@@ -41,7 +41,7 @@ ul.navbar-nav li.active {
 }
 @media (min-width: 768px){
 	#main {
-	    background-color: rgb(253, 253, 253);
+	    background-color: #FFF !important;
 	    padding: 0;
 	    margin: 0;
 	    overflow: hidden;

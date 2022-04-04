@@ -63,9 +63,11 @@ class CartController extends Controller
             return view('cart.cart')->with('items', $items)->with('cart', $cart);
         } */
         $cart = Cart::all()->where('session_id', '==', $request->sess)->last();
-        $items = Item::orderBy('title', 'ASC')->paginate(1)->where('id', '==', $request->id);
-        return view('cart.cart')->with('items', $items)->with('cart', $cart);
-        //dd($grabCart);
+        $items = Item::all()->where('id', '==', $request->id);
+        //$items = Item::all()->where('id', '==', $request->id)->last();
+        //dd($request->id);
+        //dd($items);
+        return view('cart.cart')->with('items', $items)->with('cart', $cart);     
     }
 
     public function edit($id)

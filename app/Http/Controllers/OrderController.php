@@ -15,12 +15,17 @@ class OrderController extends Controller
     {
 
         //check order details for errors
-        $this->validate($request, [
+        $validator = $request->validate([
             'fname' => 'required|string|max:255',
             'lname' => 'required|string|min:0',
             'pnum' => 'required|integer',
             'email' => 'regex:/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix'
-        ]);
+        ]);/*
+        if ($this->validator->fails()) {
+            $cart = Cart::all()->where('session_id', '==', $request->sess)->last();
+            $items = Item::orderBy('title', 'ASC')->paginate(10)->where('id', '==', $request->id);
+            return view('cart.cart')->with(Session::flash('success', 'quantity updated'))->with('items', $items)->with('cart', $cart);
+        } */
 
         //send to DB (use ELOQUENT)
         $customer = new Order;
@@ -34,9 +39,6 @@ class OrderController extends Controller
 
         Session::flash('success', 'Order complete');
 
-        //redirect
-        //return redirect()->route('products.index');
-        $testSnd="TEST";
         $sale = new ItemsSold;
         $getOrder = Order::all()->where('session_id', '==', $request->sess)->last();
         $orderList = Order::all()->where('session_id', '==', $request->sess);
@@ -53,6 +55,7 @@ class OrderController extends Controller
         foreach ($orderList as $order) {    //loop through to check session id
             $getSales = ItemsSold::all()->where('order_id', '==', $order->order_id);
         }
+        
         return view('thankyou')->with('cart',$getCart)->with('order',$customerInfo)->with('item',$getItems)->with('sale',$getSales);
     }
 }
