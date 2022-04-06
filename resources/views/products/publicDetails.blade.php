@@ -18,28 +18,27 @@ Laravel Project
 	
 	<h1 style="color: rgb(58, 58, 58)"> Your Cart </h1>
 	<hr />
-	<div class="d-flex justify-content-center">
-		@foreach ($items as $item)
-			<div class="card text-center bg-primary" style="width: 30rem;">
-				<img class="card-img-top img-thumbnail" style="width:350px;height:300px;" src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title text-secondary">{{ $item->title }}</h5>
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item text-primary">PRICE: {{ $item->price }}</li>
-						<li class="list-group-item text-primary">QUANTITY: {{$item->quantity}}</li>
-						<li class="list-group-item text-primary">ID: {{$item->id}}</li>
-						<li class="list-group-item text-primary">SKU: {{$item->sku}}</li>
-					</ul>
-					<p class="card-text">{{$item->description}}</p>
-					<form action="{{route('shopping.store')}}" method="post"> 
-						@csrf
-						<input type="hidden" name="id" value="{{$item->id}}"/>
-						<input type="hidden" name="sess" value="{{$sess}}"/>
-						<input type="hidden" name="ip" value="{{$getIP}}"/>
-						<input type="submit" class="btn btn-success btn-md" value="Buy"/>
-					</form>
-				</div>
-			</div>
+
+	@foreach ($items as $item)
+		<div class="card text-center" style="width: 30rem; display: inline-flex; float: left;">
+			<img class="card-img-top img-thumbnail" style="width:350px;height:300px;" src="{{ Storage::url('public/images/items/lrg_'. $item->picture) }}" alt="Card image cap">
 		</div>
-		@endforeach
+		<ul class="list-group list-group-flush" style="display: block; float: left;">
+  			<li class="list-group-item">{{ $item->title }}</li>
+  			<li class="list-group-item">Price: {{ $item->price }}</li>
+  			<li class="list-group-item">Quantity: {{$item->quantity}}</li>
+  			<li class="list-group-item">Id: {{$item->id}}</li>
+  			<li class="list-group-item">Sku: {{$item->sku}}</li>
+			<li class="list-group-item">{{$item->description}}</li>
+			<li class="list-group-item">
+				<form action="{{route('shopping.store')}}" method="post"> 
+					@csrf
+					<input type="hidden" name="id" value="{{$item->id}}"/>
+					<input type="hidden" name="sess" value="{{$sess}}"/>
+					<input type="hidden" name="ip" value="{{$getIP}}"/>
+					<input type="submit" class="btn btn-primary btn-md" value="Buy"/>
+				</form>
+			</li>
+		</ul>
+	@endforeach
 @endsection

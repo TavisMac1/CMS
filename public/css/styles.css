@@ -4,7 +4,7 @@
 
 .navbar-default {
 	background-color: #0278ff;
-	border-color: #272727;
+	border-color: #fcfcfc;
 	border: none;
 }
 
@@ -23,7 +23,7 @@ ul.navbar-nav li.active {
 }
 
 .navbar-default .navbar-nav > li.active > a {
-	color: rgb(212, 212, 212);
+	color: rgb(255, 255, 255);
 	background-color: rgb(11, 123, 250) !important;
 	border-color: #FFF !important;
 }
@@ -41,7 +41,7 @@ ul.navbar-nav li.active {
 }
 @media (min-width: 768px){
 	#main {
-	    background-color: #FFF !important;
+	    background-color: #FFF;
 	    padding: 0;
 	    margin: 0;
 	    overflow: hidden;
@@ -55,7 +55,7 @@ ul.navbar-nav li.active {
 	}
 
 	.navbar-nav {
-		height: 45px;
+		height: 55px;
 	}
 }
 

@@ -9,19 +9,9 @@ use Illuminate\Http\Request;
 use Session;
 
 class CartController extends Controller
-{   public function index(Request $request) {
+{   
+    public function index(Request $request) {
         echo('on cart index');
-        /*()
-        dump($id, $ip, $sess);
-        $cart = new Cart;
-        $cart->item_id = $id;
-        $cart->session_id = $sess;
-        $cart->ip_address = $ip;
-        $cart->quantity = 1;
-
-        $cart->save(); //saves to DB
-        $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $id);
-         return view('shopping.cart')->with('items', $items);  */
         return redirect()->action([OrderController::class, 'store'])->with('request', $request->all());
     } 
 
@@ -40,32 +30,12 @@ class CartController extends Controller
         $cart->quantity = 1;
 
         $cart->save(); //saves to DB
-        $empty = false;
         Session::flash('success','Items added to cart');
 
-        //get data from the cart DB where the session id is equal to current 
-        $getCart = Cart::all()->where('session_id','==', $request->sess);
-
-        foreach($getCart as $cart) {    //loop through to check session id
-            if ($cart->session_id == $request->sess) {
-                $empty = true;
-                error_log('Empty is true');
-            }  else {
-                echo("session expired");
-                error_log('Session expired');
-            }
-        }
-        /*
-        if ($empty == true) { //session matches proceed to cart viewing
-            error_log('Inside of empty is true');
-            $cart = Cart::all()->where('session_id', '==', $request->sess);
-            $items = Item::orderBy('title', 'ASC')->paginate(1)->where('id', '==', $request->id);
-            return view('cart.cart')->with('items', $items)->with('cart', $cart);
-        } */
-        $cart = Cart::all()->where('session_id', '==', $request->sess)->last();
-        $items = Item::all()->where('id', '==', $request->id);
-        //$items = Item::all()->where('id', '==', $request->id)->last();
-        //dd($request->id);
+        //$cart = Cart::all()->where('session_id', '==', $request->sess)->last();
+        //$items = Item::all()->where('id', '==', $request->id);
+        $cart = Cart::all()->where('session_id', '==', $request->sess);
+        $items = Item::all();
         //dd($items);
         return view('cart.cart')->with('items', $items)->with('cart', $cart);     
     }
@@ -88,8 +58,8 @@ class CartController extends Controller
         $cart->quantity = $request->input('quantity');
         $cart->save();
 
-        $cart = Cart::all()->where('session_id', '==', $request->sess)->last();
-        $items = Item::orderBy('title','ASC')->paginate(10)->where('id','==', $request->id);
+        $cart = Cart::all()->where('session_id', '==', $request->sess);
+        $items = Item::all();
         return view('cart.cart')->with(Session::flash('success','quantity updated'))->with('items', $items)->with('cart', $cart);
     }
 
@@ -99,11 +69,11 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {   
-        $cart = Cart::find($id);
+    public function destroy(Request $request, $id)
+    {   $cart = Cart::find($id);
         $cart->delete();
-        $categories = Category::orderBy('name', 'ASC')->paginate(10);
-        return view('products.index')->with('categories', $categories);
+        $cart = Cart::all()->where('session_id', '==', $request->sess);
+        $items = Item::all();
+        return view('cart.cart')->with(Session::flash('success', 'Item deleted from cart'))->with('items', $items)->with('cart', $cart);
     }
 }

@@ -13,29 +13,21 @@ Tavis Store Front
 @endsection
 
 @section('content')
-	
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<h1>Our Product Categories</h1>
-		</div>
-		<div class="col-md-12">
-			
-		</div>
+	<div class="jumbotron">
+		<h1 class="display-4">Our Product Categories!</h1>
+		<p class="lead">Here are the categories of products available</p>
+		<hr class="my-4">
 	</div>
 
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<table class="table">
-				<thead>
-					<th>Name</th>
-				</thead>
 				<tbody>
 					@foreach ($categories as $category)
-						<tr>
-							<td class="text-info">{{ $category->name }}</td>
-							<td style='width:150px;'><div style='float:left; margin-right:5px;'><a href="{{ route('products.show', $category->id) }}" class="btn btn-primary btn-sm">View</a></div><div style='float:left;'>
-							</td>
-						</tr>
+						<ul class="list-group">
+							<li class="list-group-item active text-info">{{ $category->name }}</li>
+							<li class="list-group-item"><a href="{{ route('products.show', $category->id) }}" class="btn btn-primary btn-sm">View {{ $category->name }}</a></li>
+						</ul>
 					@endforeach
 				</tbody>
 			</table>
