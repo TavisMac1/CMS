@@ -15,9 +15,10 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $items = Item::all();
         $categories = Category::orderBy('name','ASC')->paginate(10);
-        return view('products.index')->with('categories',$categories);
+        return view('products.index')->with('categories',$categories)->with('items', $items);
     }
 
     public function show($id)

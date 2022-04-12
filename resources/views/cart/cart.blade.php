@@ -100,43 +100,41 @@ Tavis Store
 		</tbody>
 	</table>
 </div>
-<div style="display: block; float: left; width: 100%;">
-	<div style="width: 35%; display: block; float: left;">
-		<div class="card text-center">
-			<div class="card-header">
-				Customer Details
-				<hr/>
-			</div>
-			<div class="card-body">
-				{!! Form::open(['route' => 'order.store', 'data-parsley-validate' => '', 
-							'files' => false]) !!}
+<div style="container">
+	<div class="card">
+		<div class="card-header text-center">
+			Customer Details
+			<hr/>
+		</div>
+	<div class="card-body mx-auto" style="width: 300px; margin-right: auto; margin-left: auto;"">
+		{!! Form::open(['route' => 'order.store', 'data-parsley-validate' => '', 
+					'files' => false]) !!}
 							
-					{{ Form::label('fname', 'First Name:') }}
-					{{ Form::text('fname', $firstName, ['class'=>'form-control', 'style'=>'', 
-													'data-parsley-required'=>'', 
-													'data-parsley-maxlength'=>'255']) }}
+			{{ Form::label('fname', 'First Name:') }}
+			{{ Form::text('fname', $firstName, ['class'=>'form-control', 'style'=>'', 
+											'data-parsley-required'=>'', 
+											'data-parsley-maxlength'=>'255']) }}
 
-					{{ Form::label('lname', 'Last Name:', ['style'=>'margin-top:20px']) }}
-					{{ Form::text('lname', $lastName, ['class'=>'form-control', 
-														'data-parsley-required'=>'']) }}
+			{{ Form::label('lname', 'Last Name:', ['style'=>'margin-top:20px']) }}
+			{{ Form::text('lname', $lastName, ['class'=>'form-control', 
+											'data-parsley-required'=>'']) }}
 
-					{{ Form::label('pnum', 'Phone Number:', ['style'=>'margin-top:20px']) }}
-					{{ Form::text('pnum', $phoneNumber, ['class'=>'form-control', 
-													'data-parsley-required'=>'']) }}	
+			{{ Form::label('pnum', 'Phone Number:', ['style'=>'margin-top:20px']) }}
+			{{ Form::text('pnum', $phoneNumber, ['class'=>'form-control', 
+											'data-parsley-required'=>'']) }}	
 
-					{{ Form::label('email', 'Email:', ['style'=>'margin-top:20px']) }}
-					{{ Form::text('email', $emailAddr, ['class'=>'form-control', 
-													'data-parsley-required'=>'']) }}
-					<input type="hidden" name="sess" value="{{$sess}}"/>
-					<input type="hidden" name="price" value="{{$cart->price * $cart->quantity}}"/>
-					<input type="hidden" name="quantity" value="{{$cart->quantity}}"/>
-					<input type="hidden" name="id" value="{{$cart->item_id}}"/>
-					<input type="hidden" name="all_price" value="{{$allPrice}}"/>
+			{{ Form::label('email', 'Email:', ['style'=>'margin-top:20px']) }}
+			{{ Form::text('email', $emailAddr, ['class'=>'form-control', 
+											'data-parsley-required'=>'']) }}
+			<input type="hidden" name="sess" value="{{$sess}}"/>
+			<input type="hidden" name="price" value="{{$cart->price * $cart->quantity}}"/>
+			<input type="hidden" name="quantity" value="{{$cart->quantity}}"/>
+			<input type="hidden" name="id" value="{{$cart->item_id}}"/>
+			<input type="hidden" name="all_price" value="{{$allPrice}}"/>
 
-					{{ Form::submit('Place Order', ['class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px']) }}
+			{{ Form::submit('Place Order', ['class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px']) }}
 
-				{!! Form::close() !!}
-			</div>
+		{!! Form::close() !!}
 		</div>
 	</div>
 </div>
