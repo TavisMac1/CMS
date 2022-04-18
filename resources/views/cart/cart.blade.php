@@ -7,6 +7,13 @@
 	$emailAddr = "";
 	$phoneNumber = "";
 	$allPrice = 0;
+
+	if (isset($_GET['submit'])) {
+		$firstName = $_GET('fname');
+		$lastName = $_GET('lname');
+		$emailAddr = $_GET('email');
+		$phoneNumber = $_GET('pnum');
+	}
 ?>
 @extends('common') 
 
@@ -15,7 +22,7 @@ Shopping Cart
 @endsection
 
 @section('pagename')
-Tavis Store
+Tavis Store | Cart
 @endsection
 
 @section('scripts')
@@ -67,7 +74,7 @@ Tavis Store
 							{{Form::label('quantity', 'Quantity')}}
 						</li>
 						<li class="list-group-item">
-							<input type="number" name="quantity" id="input" class="form-control" value="{{$cart->quantity}}" min="{1"} max="{11"} step="" required="required" title="">
+							<input type="number" name="quantity" id="input" class="form-control" value="{{$cart->quantity}}" min="1" max="11" step="" required="required" title="">
 							<input type="hidden" name="sess" value="{{$sess}}"/>
 						{{--<input type="hidden" name="id" value="{{$items->id}}"/>--}}
 						</li>
@@ -104,6 +111,7 @@ Tavis Store
 	<div class="card">
 		<div class="card-header text-center">
 			Customer Details
+			{{--@foreach ($errMsgs as $err) <h3> {{$err}} </h3 @endforeach --}}
 			<hr/>
 		</div>
 	<div class="card-body mx-auto" style="width: 300px; margin-right: auto; margin-left: auto;"">
@@ -121,13 +129,15 @@ Tavis Store
 
 			{{ Form::label('pnum', 'Phone Number:', ['style'=>'margin-top:20px']) }}
 			{{ Form::text('pnum', $phoneNumber, ['class'=>'form-control', 
-											'data-parsley-required'=>'']) }}	
+											'data-parsley-required'=>'',
+											'data-parsley-type'=>'integer']) }}	
 
 			{{ Form::label('email', 'Email:', ['style'=>'margin-top:20px']) }}
 			{{ Form::text('email', $emailAddr, ['class'=>'form-control', 
-											'data-parsley-required'=>'']) }}
+											'data-parsley-required'=>'',
+											'data-parsley-type'=>'email']) }}
 			<input type="hidden" name="sess" value="{{$sess}}"/>
-			<input type="hidden" name="price" value="{{$cart->price * $cart->quantity}}"/>
+			<input type="hidden" name="price" value="{{$item->price * $cart->quantity}}"/>
 			<input type="hidden" name="quantity" value="{{$cart->quantity}}"/>
 			<input type="hidden" name="id" value="{{$cart->item_id}}"/>
 			<input type="hidden" name="all_price" value="{{$allPrice}}"/>
@@ -138,13 +148,4 @@ Tavis Store
 		</div>
 	</div>
 </div>
-	<?php
-		if (!empty($_GET)) {
-			$firstName = $_GET['fname'];
-			$lastName = $_POST['lname'];
-			$emailAddr = $_POST['pnum'];
-			$phoneNumber = $_POST['email'];
-		}
-	?>
-
 @endsection

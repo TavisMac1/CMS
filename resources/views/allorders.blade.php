@@ -1,6 +1,12 @@
-@extends('layouts.app')
+@extends('common') 
 
 @section('content')
+@section('pagetitle')
+Orders
+@endsection
+@section('pagename')
+Tavis Store | Orders
+@endsection
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,11 +19,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-            {!! Form::open(['route' => 'order.store', 'files' =>false]) !!}
-				<input type="hidden" name="show" value=""/>
-			    {{ Form::submit('Show Orders', ['class'=>'btn btn-success btn-lg btn-block', 'style'=>'margin-top:20px']) }}
-
-			{!! Form::close() !!}
                     <table class="table">
                         <thead>
                             <th>History</th>

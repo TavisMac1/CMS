@@ -10,7 +10,7 @@ Item List
 @endsection
 
 @section('pagename')
-Laravel Project
+Tavis Store | Details
 @endsection
 
 @section('content')
